@@ -1,0 +1,54 @@
+from gi.repository import Gtk
+
+
+class adder:
+
+    result = 0
+
+    def __init__( self, number1, number2 ):
+        self.result = int( number1 ) + int( number2 )
+
+    def giveResult( self ):
+        return str(self.result)
+
+class add_gui:
+
+    wTree = None
+
+    def __init__( self ):
+
+        filename = "test1.glade"
+        self.builder = Gtk.Builder()
+        self.builder.add_from_file(filename)
+#        builder.connect_signals(self)
+
+#       self.wTree = gtk.glade.XML( "Add_main1.glade" )
+
+        dic = { 
+              "b3_clicked_cb" : self.click,
+#              "on_btAdd_clicked" : self.add,
+                "on_window1_destroy" : self.quit,
+              }
+	self.builder.connect_signals(dic)
+	
+	self.window1 = self.builder.get_object("window1")
+#	self.builder.get_object("hboxWarning").hide()
+
+	self.window1.show_all()	
+	self.e1 = self.builder.get_object("e1")
+	self.p1 = self.builder.get_object("p1")
+	self.s1 = self.builder.get_object("s1")
+	self.b1 = self.builder.get_object("b1")
+	self.b2 = self.builder.get_object("b2")
+	self.b3 = self.builder.get_object("b3")
+#        gtk.main()
+	
+    def click(self, widget):
+	self.p1.set_fraction(0.7)
+
+    def quit(self, widget):
+        sys.exit(0)
+
+if __name__== "__main__":
+    add_gui()
+    Gtk.main()

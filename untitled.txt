@@ -1,0 +1,8 @@
+
+
+ser = serial.Serial(port = "/dev/ttyUSB0", baudrate=9600)
+ser.open()
+while(True):
+    if(ser.isOpen()):
+    
+
